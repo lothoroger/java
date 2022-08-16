@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.springframework.org/schema/beans
+			   https://www.springframework.org/schema/beans/spring-beans.xsd">
+			   
+			  <bean id="aRef"   class="com.example.dependencyinjectiondemo.bean.Address">
+			  	<property name="street" value="505 Oppenhiemer drive" />
+			  	<property name="city" value="Los Alamos" />
+			  	<property name="state" value="NM" />
+			  	<property name="zipCode" value="87544" />
+			  </bean>
+			  
+			   <bean id="rRef"   class="com.example.dependencyinjectiondemo.bean.Restaurant">
+			  	<property name="name" value="John's Cafe" />
+			  	<property name="phone" value="(505) 396-0469" />
+			  	<property name="operatingHours" value="9:00 am - 6:00 pm" />
+			  	<property name="ratings" value="4.5" />
+			  	<!--   IOC Container will use Setter and Getter --> 
+			  	<!--   property name="addrs" ref="aRef" /   -->
+			  		<!--   IOC Container will use constructor injection -->
+			  	<constructor-arg ref="aRef" />
+			  	<property name="searchKeywords">
+			  			<list><value>Johns Cafe</value>
+			  					  <value>Coffee Shop</value>
+			  					   <value>Cake</value>
+			  					    <value>Pizza</value>
+			  			</list>
+			  		
+			  	</property>
+			  </bean>
+			  
+			  
+</beans>
