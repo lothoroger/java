@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:context="http://www.springframework.org/schema/context"
+			xsi:schemaLocation="http://www.springframework.org/schema/beans
+			   http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+			   http://www.springframework.org/schema/context
+			   http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+			   
+			   
+			  <bean id="aProd"   class="com.example.AOPdemo.bean.Product">
+			  	<property name="id" value="101" />
+			  	<property name="name" value="Water Bottle Flasks" />
+			  		<property name="price" value="30" />
+			  	<property name="brand" value="HydratingBotch"  />
+			  		<property name="stock" value="3" />
+	
+			  <!--  We are not configuing setter or constructor injection in xml file
+			  	<property name="order" ref="aOrder" />
+			  	<constructor-arg ref="aOrder" />
+			  	-->
+			  </bean>
+			  
+			  <bean id="beforeAdv"  class="com.example.AOPdemo.bean.BeforeAdvice" />
+			   <bean id="afterAdv"  class="com.example.AOPdemo.bean.AfterAdvice" />
+			   <bean id="prodProxy" class= "org.springframework.aop.framework.ProxyFactoryBean" >
+			   		<property name="target" ref="aProd"></property>
+			   		<property name="interceptorNames">
+			   			<list>
+			   			<value>beforeAdv</value>
+			   			<value>afterAdv</value>
+			   			</list>
+			   		</property>
+			   </bean>
+</beans>
